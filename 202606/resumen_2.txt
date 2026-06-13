@@ -1,0 +1,7 @@
+RESUMEN INSCRIPCIÓN
+-------------------------
+ID: 2
+Alumno: Valeria
+Correo: va.sifontes@duocuc.cl
+Curso: Cloud Native
+Fecha: 2026-06-11
