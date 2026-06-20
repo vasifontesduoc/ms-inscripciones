@@ -2,8 +2,8 @@ package com.duoc.ms_inscripciones.controller;
 
 import com.duoc.ms_inscripciones.model.Inscripcion;
 import com.duoc.ms_inscripciones.service.InscripcionService;
-import org.springframework.web.bind.annotation.*;
 import com.duoc.ms_inscripciones.service.S3Service;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,16 +21,35 @@ public class InscripcionController {
         this.s3Service = s3Service;
     }
 
+    // Crear inscripción
     @PostMapping
     public Inscripcion crear(@RequestBody Inscripcion inscripcion) {
         return service.guardar(inscripcion);
     }
 
+    // Listar inscripciones
     @GetMapping
     public List<Inscripcion> listar() {
         return service.listar();
     }
 
+    // Actualizar inscripción
+    @PutMapping("/{id}")
+    public Inscripcion actualizar(
+            @PathVariable Long id,
+            @RequestBody Inscripcion inscripcion) {
+
+        return service.actualizar(id, inscripcion);
+    }
+
+    // Eliminar inscripción
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Long id) {
+
+        service.eliminar(id);
+    }
+
+    // Descargar archivo desde S3
     @GetMapping("/download/{archivo}")
     public String descargarArchivo(@PathVariable String archivo) {
 
@@ -50,6 +69,7 @@ public class InscripcionController {
         }
     }
 
+    // Eliminar archivo de S3
     @DeleteMapping("/delete/{archivo}")
     public String eliminarArchivo(@PathVariable String archivo) {
 
@@ -66,9 +86,9 @@ public class InscripcionController {
         }
     }
 
+    // Actualizar archivo en S3
     @PutMapping("/update/{archivo}")
-    public String actualizarArchivo(
-            @PathVariable String archivo) {
+    public String actualizarArchivo(@PathVariable String archivo) {
 
         try {
 

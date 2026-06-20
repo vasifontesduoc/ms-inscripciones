@@ -1,10 +1,10 @@
-package com.duoc.ms_incripciones;
+package com.duoc.ms_inscripciones;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MsIncripcionesApplicationTests {
+class MsInscripcionesApplicationTests {
 
 	@Test
 	void contextLoads() {

@@ -47,4 +47,26 @@ public class InscripcionService {
     public List<Inscripcion> listar() {
         return repository.findAll();
     }
+
+    public Inscripcion actualizar(Long id, Inscripcion inscripcion) {
+
+        Inscripcion existente = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Inscripción no encontrada"));
+
+        existente.setNombreAlumno(inscripcion.getNombreAlumno());
+        existente.setCorreo(inscripcion.getCorreo());
+        existente.setCurso(inscripcion.getCurso());
+        existente.setFecha(inscripcion.getFecha());
+
+        return repository.save(existente);
+    }
+
+    public void eliminar(Long id) {
+
+        if (!repository.existsById(id)) {
+            throw new RuntimeException("Inscripción no encontrada");
+        }
+
+        repository.deleteById(id);
+    }
 }
