@@ -15,65 +15,65 @@ import java.io.File;
 @Service
 public class S3Service {
 
-    private final S3Client s3Client;
+        private final S3Client s3Client;
 
-    @Value("${aws.bucketName}")
-    private String bucketName;
+        @Value("${aws.bucketName}")
+        private String bucketName;
 
-    public S3Service(S3Client s3Client) {
-        this.s3Client = s3Client;
-    }
+        public S3Service(S3Client s3Client) {
+                this.s3Client = s3Client;
+        }
 
-    public void subirArchivo(String rutaArchivo, String key) {
+        public void subirArchivo(String rutaArchivo, String key) {
 
-        File archivo = new File(rutaArchivo);
+                File archivo = new File(rutaArchivo);
 
-        PutObjectRequest request = PutObjectRequest.builder()
-                .bucket(bucketName)
-                .key(key)
-                .build();
+                PutObjectRequest request = PutObjectRequest.builder()
+                                .bucket(bucketName)
+                                .key(key)
+                                .build();
 
-        s3Client.putObject(
-                request,
-                RequestBody.fromFile(archivo));
-    }
+                s3Client.putObject(
+                                request,
+                                RequestBody.fromFile(archivo));
+        }
 
-    public void descargarArchivo(String key, String rutaDestino) {
+        public void descargarArchivo(String key, String rutaDestino) {
 
-        GetObjectRequest request = GetObjectRequest.builder()
-                .bucket(bucketName)
-                .key(key)
-                .build();
+                GetObjectRequest request = GetObjectRequest.builder()
+                                .bucket(bucketName)
+                                .key(key)
+                                .build();
 
-        s3Client.getObject(
-                request,
-                Paths.get(rutaDestino));
-    }
+                s3Client.getObject(
+                                request,
+                                Paths.get(rutaDestino));
+        }
 
-    public void eliminarArchivo(String key) {
+        public void eliminarArchivo(String key) {
 
-        s3Client.deleteObject(builder -> builder
-                .bucket(bucketName)
-                .key(key));
-    }
+                s3Client.deleteObject(builder -> builder
+                                .bucket(bucketName)
+                                .key(key));
+        }
 
-    @PostConstruct
-    public void mostrarBucket() {
-        System.out.println("BUCKET USADO: " + bucketName);
-    }
+        @PostConstruct
+        public void mostrarBucket() {
+                System.out.println("BUCKET USADO: " + bucketName);
+        }
 
-    public void modificarArchivo(
-            String rutaArchivo,
-            String key) {
+        public void modificarArchivo(
+                        String rutaArchivo,
+                        String key) {
 
-        PutObjectRequest request = PutObjectRequest.builder()
-                .bucket(bucketName)
-                .key(key)
-                .build();
+                PutObjectRequest request = PutObjectRequest.builder()
+                                .bucket(bucketName)
+                                .key(key)
+                                .build();
 
-        s3Client.putObject(
-                request,
-                RequestBody.fromFile(
-                        new File(rutaArchivo)));
-    }
+                s3Client.putObject(
+                                request,
+                                RequestBody.fromFile(
+                                                new File(rutaArchivo)));
+        }
 }

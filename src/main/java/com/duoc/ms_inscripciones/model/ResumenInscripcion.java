@@ -2,27 +2,24 @@ package com.duoc.ms_inscripciones.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.io.Serial;
-import java.io.Serializable;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Inscripcion implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = 1L;
+public class ResumenInscripcion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nombreAlumno;
+    private Long idInscripcion;
 
-    private String correo;
+    private String nombreAlumno;
 
     private String curso;
 
     private String fecha;
+
+    private String nombreArchivo;
 }

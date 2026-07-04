@@ -1,0 +1,7 @@
+RESUMEN INSCRIPCIÓN
+-------------------------
+ID: 1
+Alumno: Valeria
+Correo: vale@duoc.cl
+Curso: Cloud Native
+Fecha: 2026-07-03
